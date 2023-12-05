@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useState } from 'react';
 
@@ -17,15 +17,15 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.optionsBlock}>
-          <View onTouchEnd={() => {setSize(32); setSize1(28); setSize2(28); setColor('#2F94F0'); setColor1('#778DBD'); setColor2('#778DBD')}} style={[styles.headerOptions, { backgroundColor: color }]}>
+          <TouchableOpacity onPress={() => {setSize(32); setSize1(28); setSize2(28); setColor('#2F94F0'); setColor1('#778DBD'); setColor2('#778DBD')}} style={[styles.headerOptions, { backgroundColor: color }]}>
             <FontAwesome5 name="dumbbell" size={size} color="black" />
-          </View>
-          <View onTouchEnd={() => {setSize1(32); setSize(28); setSize2(28); setColor1('#2F94F0'); setColor('#778DBD'); setColor2('#778DBD')}} style={[styles.headerOptions, { backgroundColor: color1}]}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {setSize1(32); setSize(28); setSize2(28); setColor1('#2F94F0'); setColor('#778DBD'); setColor2('#778DBD')}} style={[styles.headerOptions, { backgroundColor: color1}]}>
             <FontAwesome5 name="fire" size={size1} color="black" />
-          </View>
-          <View onTouchEnd={() => {setSize2(32); setSize(28); setSize1(28); setColor2('#2F94F0'); setColor('#778DBD'); setColor1('#778DBD')}} style={[styles.headerOptions, { backgroundColor: color2 }]}>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => {setSize2(32); setSize(28); setSize1(28); setColor2('#2F94F0'); setColor('#778DBD'); setColor1('#778DBD')}} style={[styles.headerOptions, { backgroundColor: color2 }]}>
             <FontAwesome5 name="tasks" size={size2} color="black" />
-          </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
