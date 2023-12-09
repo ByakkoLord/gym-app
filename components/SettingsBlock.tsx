@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TextInput } from "react-native"
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
 
 interface Props {
@@ -12,11 +12,13 @@ export default function SettingsBlock(props: Props) {
     }
 
     return (
-        <View style={styles.main}>
+        <ScrollView style={{width: '100%', height: '100%'}}>
+            <View style={styles.main}>
             <View style={{ display: 'flex', flexDirection: "row", justifyContent: 'space-between', width: '100%', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'white', paddingBottom: 20 }}>
                 <Text style={styles.title}>Settings</Text>
                 <Ionicons style={{ marginRight: 40 }} name="settings-outline" size={32} color={'#f52d56'} />
             </View>
+            <Text style={[styles.title2, { marginTop: 20 }]}>About You</Text>
             <View style={styles.blocks}>
                 <Text style={styles.title2}>Set your caracteristics here</Text>
                 <View>
@@ -46,11 +48,13 @@ export default function SettingsBlock(props: Props) {
                         </View>
                     </View>
                 </View>
-                
 
             </View>
+            <Text style={styles.title2}>Preferencies</Text>           
 
         </View>
+        </ScrollView>
+        
     );
 }
 
@@ -81,7 +85,8 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     blocks: {
-        marginTop: 50,
+        marginTop: 20,
+        marginBottom: 20,
         padding: 20,
         width: '90%',
         height: 'auto',
@@ -95,12 +100,11 @@ const styles = StyleSheet.create({
         
     },
     main:{
-        marginTop: 150,
+        marginTop: 100,
         alignItems: 'center',
         width: '100%',
         height: '100%',
         backgroundColor: '#2C313A',
         borderRadius: 10,
-        margin: 10
     }
 });
