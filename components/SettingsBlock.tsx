@@ -15,28 +15,36 @@ export default function SettingsBlock(props: Props) {
         <View style={styles.main}>
             <View style={{ display: 'flex', flexDirection: "row", justifyContent: 'space-between', width: '100%', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'white', paddingBottom: 20 }}>
                 <Text style={styles.title}>Settings</Text>
-                <Ionicons style={{ marginRight: 40 }} name="settings-outline" size={32} color={'#FF6D3E'} />
+                <Ionicons style={{ marginRight: 40 }} name="settings-outline" size={32} color={'#f52d56'} />
             </View>
             <View style={styles.blocks}>
-                <Text style={styles.title2}>Set your preferences here</Text>
+                <Text style={styles.title2}>Set your caracteristics here</Text>
                 <View>
                     <View style={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 5}}>
                         <Text style={styles.subtitle}>What's your weight?</Text>
-                        <TextInput style={styles.inputs}></TextInput>
+                        <View style={{ display: "flex", flexDirection: 'row', alignItems: 'flex-end' }}>
+                            <TextInput maxLength={3} keyboardType="numeric" style={styles.inputs}></TextInput>
+                            <Text style={[styles.subtitle, { marginLeft: 35 }]}>Kg</Text>
+                        </View>
                     </View>
                 </View>
                 <View>
                     <View style={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 5}}>
-                        <Text style={styles.subtitle}>How tall are you?</Text>
-                        <TextInput style={styles.inputs}></TextInput>
+                        <Text style={styles.subtitle}>What's your height?</Text>
+                        <View style={{ display: "flex", flexDirection: 'row', alignItems: 'flex-end' }}>
+                            <TextInput maxLength={3} keyboardType="numeric" style={styles.inputs}></TextInput>
+                            <Text style={[styles.subtitle, { marginLeft: 30 }]}>Cm</Text>
+                        </View>
                     </View>
                 </View>
                 <View>
                     <View style={{ display: "flex", flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 5}}>
-                        <Text style={styles.subtitle}>How old are you?</Text>
-                        <TextInput style={styles.inputs}></TextInput>
+                        <Text style={styles.subtitle}>What's your age?</Text>
+                        <View style={{ display: "flex", flexDirection: 'row', alignItems: 'flex-end' }}>
+                            <TextInput maxLength={3} keyboardType="numeric" style={styles.inputs}></TextInput>
+                            <Text style={[styles.subtitle, { marginLeft: 10 }]}>Years</Text>
+                        </View>
                     </View>
-
                 </View>
                 
 
@@ -51,12 +59,12 @@ const styles = StyleSheet.create({
         marginLeft: 40,
         fontSize: 40,
         fontWeight: 'bold',
-        color: '#FF6D3E',
+        color: '#f52d56',
     },
     title2: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: '#D6E3FF',
+        color: '#f52d56',
     },
     subtitle: {
         fontSize: 20,
@@ -67,20 +75,24 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         width: 50,
-        color: '#D6E3FF',
-        borderBottomColor: '#D6E3FF',
+        textAlign: 'center',
+        color: '#fff',
+        borderBottomColor: '#f52d56',
         borderBottomWidth: 1,
     },
     blocks: {
         marginTop: 50,
         padding: 20,
-        borderBottomWidth: 1,
-        borderBottomColor: '#D6E3FF',
         width: '90%',
         height: 'auto',
-        backgroundColor: '#2C313A',
+        backgroundColor: '#3E4552',
         borderRadius: 10,
-        margin: 10
+        margin: 10,
+        shadowColor: 'black',
+        shadowOpacity: 0.5,
+        shadowRadius: 10,
+        elevation: 25,
+        
     },
     main:{
         marginTop: 150,
