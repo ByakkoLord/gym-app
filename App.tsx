@@ -5,7 +5,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
 
-import WaterBlock from './components/WaterBlock';
+import CardioBlock from './components/CardioBlock';
 import SettingsBlock from './components/SettingsBlock';
 
 export default function App() {
@@ -85,6 +85,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+
+      <CardioBlock visibility={preVisibility2}/>
       <SettingsBlock visibility={preVisibility} />
 
       <Animated.View style={[styles.circle, { bottom: icon_1}]}>
