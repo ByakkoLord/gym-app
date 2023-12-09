@@ -85,27 +85,28 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <SettingsBlock visibility={preVisibility} />
 
       <Animated.View style={[styles.circle, { bottom: icon_1}]}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{popOut() ;setPreVisibility('none'); setPreVisibility1('none'); setPreVisibility2('none'); setPreVisibility3('flex')}}>
           <Ionicons name="water" size={25} color="#FFFF" />
         </TouchableOpacity>
       </Animated.View>
 
       <Animated.View style={[styles.circle, { bottom: icon_2, right: icon_2}]}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{popOut() ;setPreVisibility('none'); setPreVisibility1('none'); setPreVisibility2('flex'); setPreVisibility3('none')}}>
           <Ionicons name="bicycle" size={25} color="#FFFF" />
         </TouchableOpacity>
       </Animated.View>
 
       <Animated.View style={[styles.circle, { bottom: icon_3, right: icon_3}]}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{popOut() ;setPreVisibility('none'); setPreVisibility1('flex'); setPreVisibility2('none'); setPreVisibility3('none')}}>
           <Ionicons name="barbell" size={25} color="#FFFF" />
         </TouchableOpacity>
       </Animated.View>
 
       <Animated.View style={[styles.circle, { right: icon_4}]}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=>{popOut() ;setPreVisibility('flex'); setPreVisibility1('none'); setPreVisibility2('none'); setPreVisibility3('none')}}>
           <Ionicons name="settings" size={25} color="#FFFF" />
         </TouchableOpacity>
       </Animated.View>
