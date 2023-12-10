@@ -4,8 +4,9 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { FontAwesome5 } from '@expo/vector-icons';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState } from 'react';
+import { DaysProvider } from './contexts/days';
 
-import CardioBlock from './components/CardioBlock';
+import MuscleBlock from './components/MuscleBlock';
 import SettingsBlock from './components/SettingsBlock';
 
 export default function App() {
@@ -77,16 +78,18 @@ export default function App() {
   const [iconMenu, setIconMenu] = useState<'menu' | 'close'>('menu');
 
   const [preVisibility, setPreVisibility] = useState<string>('none');
-  const [preVisibilit1, setPreVisibility1] = useState<string>('none');
+  const [preVisibility1, setPreVisibility1] = useState<string>('none');
   const [preVisibility2, setPreVisibility2] = useState<string>('none');
   const [preVisibility3, setPreVisibility3] = useState<string>('none');
 
   
 
   return (
+
+    <DaysProvider>
     <View style={styles.container}>
 
-      <CardioBlock visibility={preVisibility2}/>
+      <MuscleBlock visibility={preVisibility1}/>
       <SettingsBlock visibility={preVisibility} />
 
       <Animated.View style={[styles.circle, { bottom: icon_1}]}>
@@ -124,6 +127,7 @@ export default function App() {
 
       
     </View>
+    </DaysProvider>
   );
 }
 
