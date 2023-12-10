@@ -17,6 +17,8 @@ export default function SettingsBlock(props: Props) {
     const { Friday, setFriday } = useContext(DaysContext);
     const { Saturday, setSaturday } = useContext(DaysContext);
 
+    const { workDay, setWorkDay } = useContext(DaysContext);
+
     const [bgColor, setBgColor] = useState('#3E4552');
     const [bgColor1, setBgColor1] = useState('#3E4552');
     const [bgColor2, setBgColor2] = useState('#3E4552');
@@ -33,6 +35,8 @@ export default function SettingsBlock(props: Props) {
     const [textColor5, setTextColor5] = useState('#f52d56');
     const [textColor6, setTextColor6] = useState('#f52d56');
 
+    
+
 
     const SwitchDayOn = (day: string) => {
         switch (day) {
@@ -41,10 +45,12 @@ export default function SettingsBlock(props: Props) {
                     setSunday(true);
                     setBgColor('#f52d56');
                     setTextColor('#fff');
+                    setWorkDay(true);
                 }else{
                     setSunday(false);
                     setBgColor('#3E4552');
                     setTextColor('#f52d56');
+                    setWorkDay(false);
                 }
                 break;
             case 'Monday':
@@ -52,10 +58,12 @@ export default function SettingsBlock(props: Props) {
                     setMonday(true);
                     setBgColor1('#f52d56');
                     setTextColor1('#fff');
+                    setWorkDay(true);
                 }else{
                     setMonday(false);
                     setBgColor1('#3E4552');
                     setTextColor1('#f52d56');
+                    setWorkDay(false);
                 }
                 break;
             case 'Tuesday':
@@ -63,10 +71,12 @@ export default function SettingsBlock(props: Props) {
                     setTuesday(true);
                     setBgColor2('#f52d56');
                     setTextColor2('#fff');
+                    setWorkDay(true);
                 }else{
                     setTuesday(false);
                     setBgColor2('#3E4552');
                     setTextColor2('#f52d56');
+                    setWorkDay(false);
                 }
                 break;
             case 'Wednesday':
@@ -74,10 +84,12 @@ export default function SettingsBlock(props: Props) {
                     setWednesday(true);
                     setBgColor3('#f52d56');
                     setTextColor3('#fff');
+                    setWorkDay(true);
                 }else{
                     setWednesday(false);
                     setBgColor3('#3E4552');
                     setTextColor3('#f52d56');
+                    setWorkDay(false);
                 }
                 break;
             case 'Thursday':
@@ -85,10 +97,12 @@ export default function SettingsBlock(props: Props) {
                     setThursday(true);
                     setBgColor4('#f52d56');
                     setTextColor4('#fff');
+                    setWorkDay(true);
                 }else{
                     setThursday(false);
                     setBgColor4('#3E4552');
                     setTextColor4('#f52d56');
+                    setWorkDay(false);
                 }
                 break;
             case 'Friday':
@@ -96,10 +110,12 @@ export default function SettingsBlock(props: Props) {
                     setFriday(true);
                     setBgColor5('#f52d56');
                     setTextColor5('#fff');
+                    setWorkDay(true);
                 }else{
                     setFriday(false);
                     setBgColor5('#3E4552');
                     setTextColor5('#f52d56');
+                    setWorkDay(false);
                 }
                 break;
             case 'Saturday':
@@ -107,10 +123,12 @@ export default function SettingsBlock(props: Props) {
                     setSaturday(true);
                     setBgColor6('#f52d56');
                     setTextColor6('#fff');
+                    setWorkDay(true);
                 }else{
                     setSaturday(false);
                     setBgColor6('#3E4552');
                     setTextColor6('#f52d56');
+                    setWorkDay(false);
                 }
                 break;
         }

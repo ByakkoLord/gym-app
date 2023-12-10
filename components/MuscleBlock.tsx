@@ -1,6 +1,8 @@
-import { View, Text, Pressable, StyleSheet, ScrollView } from "react-native";
+import { View, Text, Pressable, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { LinearGradient }from "expo-linear-gradient";
-
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { useState, useContext, useEffect } from "react";
+import { DaysContext } from "../contexts/days";
 
 interface Props {
     visibility: string
@@ -8,32 +10,80 @@ interface Props {
 
 export default function MuscleBlock(props: Props) {
 
-    let today = 'Saturday'
+    const { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, workDay } = useContext(DaysContext);
 
+    const [textToday, setTextToday] = useState<string>('');
+    type IconName = "checkmark-circle" | "checkmark-circle-outline";
+    const [iconNames, setIconNames] = useState<IconName[]>(Array(3).fill("checkmark-circle"));
+
+    let day = new Date()
+    const today = day.getDay();
+    useEffect(() => {
+        if(today === 0 && Sunday === true){
+            setTextToday('Sunday');
+        }
+        if(today === 1 && Monday === true){
+            setTextToday('Monday');
+        }
+        if(today === 2 && Tuesday === true){
+            setTextToday('Tuesday');
+        }
+        if(today === 3 && Wednesday === true){
+            setTextToday('Wednesday');
+        }
+        if(today === 4 && Thursday === true){
+            setTextToday('Thursday');
+        }
+        if(today === 5 && Friday === true){
+            setTextToday('Friday');
+        }
+        if(today === 6 && Saturday === true){
+            setTextToday('Saturday');
+        }
+        if(workDay === false){
+            setTextToday('Rest Day');
+        }
+},[Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday])
+    
+    const exerciceData = {
+        series: 5,
+        reps: 15,
+        name: 'Bench Press'
+    }
+ 
     if (props.visibility === 'none') {
         return null;
     }
     
     return (
         <ScrollView style={{width: '100%', height: '100%'}}>
-            <View style={{ width: '100%', height: '100%', display: "flex", justifyContent: "center", alignItems: "center" }}>
-
+            <View style={{ width: '100%', height: 'auto', display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <LinearGradient start={{x: 0.1, y:0.1}} colors={['#f52d56', '#ED61E6']} style={styles.main}>
-                    <Text style={{ color: 'white', fontSize: 60, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 12, left: 12 }}>{today}</Text>
-                    <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 92, left: 12 }}>Let's train:</Text>
-                    <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 162, left: 12 }}>Chest</Text>
-                    <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 232, left: 12 }}>Exercices:</Text>
-                
-                <ScrollView horizontal={true} style={{ position: "absolute", bottom: 10 ,width: '100%', backgroundColor: '#3E4552'}}>
-                    <View style={{ backgroundColor: 'yellow', width: 10, height: '100%', borderBottomRightRadius: 15 }}></View>
-                    <View style={{  width: 300, height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left'}}>Bench Press</Text>
-                    </View>
-                    <View style={{  width: 300, height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                        <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left'}}>Bench Press</Text>
-                    </View>
-                </ScrollView>
-                </LinearGradient>    
+                        <Text style={{ color: 'white', fontSize: 60, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 12, left: 12 }}>{textToday}</Text>
+                        <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 92, left: 12 }}>Let's train:</Text>
+                        <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 162, left: 12 }}>Chest</Text>
+                        <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 232, left: 12 }}>Exercices:</Text>
+
+                    <ScrollView horizontal={true} style={{ position: "absolute", bottom: 10 ,width: '100%', backgroundColor: '#3E4552'}}>
+                        <View style={{ backgroundColor: 'yellow', width: 10, height: '100%', borderBottomRightRadius: 15 }}></View>
+                        {Array.from({ length: 3}).map((_, index) => {
+                            const exercise = exerciceData;
+                            return (
+                        <TouchableOpacity onPress={() => {setIconNames(prevIconNames => {
+                            const newIconNames = [...prevIconNames];
+                            newIconNames[index] = newIconNames[index] === 'checkmark-circle' ? "checkmark-circle-outline" : "checkmark-circle";
+                            return newIconNames;
+                        });}} style={{  width: 300, height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRightColor: 'gray', borderRightWidth: 2}}>
+                            <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left'}}>{exercise.name}</Text>
+                            <Text style={{ color: '#CFCBBA', fontSize: 20}}>Series: {exercise.series} Reps: {exercise.reps}</Text>
+                            <Ionicons style={{position: "absolute", right: 10, bottom: 3}} name={iconNames[index]} size={35} color="#FFFF" />
+                        </TouchableOpacity>)}
+                        )}
+                        <View style={{  width: 300, height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                            <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left'}}>Bench Press</Text>
+                        </View>
+                    </ScrollView>
+                </LinearGradient>
                 
             
             </View>

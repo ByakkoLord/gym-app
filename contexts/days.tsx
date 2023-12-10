@@ -14,7 +14,9 @@ export const DaysContext = createContext({
     Friday: false,
     setFriday: (value: boolean) => {},
     Saturday: false,
-    setSaturday: (value: boolean) => {}
+    setSaturday: (value: boolean) => {},
+    workDay: false,
+    setWorkDay: (value: boolean) => {},
 });
 
 export const DaysProvider = ({ children }: { children: ReactNode }) => {
@@ -25,9 +27,10 @@ export const DaysProvider = ({ children }: { children: ReactNode }) => {
     const [Thursday, setThursday] = useState<boolean>(false);
     const [Friday, setFriday] = useState<boolean>(false);
     const [Saturday, setSaturday] = useState<boolean>(false);
+    const [workDay, setWorkDay] = useState<boolean>(false);
 
     return (
-        <DaysContext.Provider value={{ Sunday, setSunday, Monday, setMonday, Tuesday, setTuesday, Wednesday, setWednesday, Thursday, setThursday, Friday, setFriday, Saturday, setSaturday }}>
+        <DaysContext.Provider value={{workDay, setWorkDay, Sunday, setSunday, Monday, setMonday, Tuesday, setTuesday, Wednesday, setWednesday, Thursday, setThursday, Friday, setFriday, Saturday, setSaturday }}>
             {children}
         </DaysContext.Provider>
     )

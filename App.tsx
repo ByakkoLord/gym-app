@@ -78,7 +78,7 @@ export default function App() {
   const [iconMenu, setIconMenu] = useState<'menu' | 'close'>('menu');
 
   const [preVisibility, setPreVisibility] = useState<string>('none');
-  const [preVisibility1, setPreVisibility1] = useState<string>('none');
+  const [preVisibility1, setPreVisibility1] = useState<string>('flex');
   const [preVisibility2, setPreVisibility2] = useState<string>('none');
   const [preVisibility3, setPreVisibility3] = useState<string>('none');
 
