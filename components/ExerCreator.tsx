@@ -44,6 +44,21 @@ export default function ExerCreator(props: Props) {
                         style={[styles.inputText]}
                     />
                 </View>
+                <View style={{display: "flex", flexDirection: 'row', justifyContent: 'space-between', width: '85%'}}>
+                    <Text style={[styles.title, { marginTop: 15 }]}>Difficult:</Text>
+                    <View style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', width: '50%'}}>
+                        <TouchableOpacity style={{backgroundColor: '#61F540', width: 30, height: 30, borderRadius: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20}}>
+                            
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{backgroundColor: '#2FE4F5', width: 30, height: 30, borderRadius: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20}}>
+                            
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{backgroundColor: '#ED61E6', width: 30, height: 30, borderRadius: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20}}>
+                            
+                        </TouchableOpacity>
+                    </View>
+                </View>
+
                 <View style={{display: "flex", flexDirection: 'row', alignItems: 'center'}}>
                     <Text style={styles.title}>Exercise:</Text>
                     <Picker
@@ -62,9 +77,10 @@ export default function ExerCreator(props: Props) {
                 </View>
                 
                 
-                <TouchableOpacity style={{backgroundColor: '#f52d56', width: 150, height: 50, borderRadius: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20}}
+                <TouchableOpacity style={{backgroundColor: '#f52d56', width: 150, height: 50, borderRadius: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20, shadowColor: 'black', shadowRadius: 15, elevation: 5}}
                     onPress={() => addExercise(series, reps, exercise)}
                 >
+                    <Text style={{color: 'white', fontSize: 25, fontWeight: 'bold'}}>Add</Text>
                 </TouchableOpacity>
         </View>
         
