@@ -19,6 +19,8 @@ export default function SettingsBlock(props: Props) {
     const { Friday, setFriday } = useContext(DaysContext);
     const { Saturday, setSaturday } = useContext(DaysContext);
 
+    const [visibility, setVisibility] = useState<string>('none');
+
     const { workDay, setWorkDay } = useContext(DaysContext);
 
 
@@ -141,6 +143,8 @@ export default function SettingsBlock(props: Props) {
         return null;
     }
 
+    
+
     return (
         <ScrollView style={{width: '100%', height: '100%'}}>
             <View style={styles.main}>
@@ -220,12 +224,12 @@ export default function SettingsBlock(props: Props) {
             </View>
             <Text style={styles.title2}>Choose your exercises</Text>
             <View style={[styles.blocks, { marginTop: 15 }]}>
-                <TouchableOpacity style={{shadowColor: 'black', shadowRadius: 10, elevation: 20 ,backgroundColor: '#f52d56', width: 100, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10}}>
+                <TouchableOpacity onPress={() => {setVisibility('flex')}} style={{shadowColor: 'black', shadowRadius: 10, elevation: 20 ,backgroundColor: '#f52d56', width: 100, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10}}>
                 <Text style={{ color: 'white', fontSize: 30, fontWeight: 'bold' }}>Create</Text>
 
                 </TouchableOpacity>
             </View>
-            <ExerCreator/>
+            <ExerCreator visibility={visibility}/>
             
         </View>
         </ScrollView>
