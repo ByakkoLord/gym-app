@@ -3,6 +3,8 @@ import { Ionicons } from '@expo/vector-icons';
 import { useState, useContext, useEffect } from "react";
 import { DaysContext } from "../contexts/days";
 
+import ExerCreator from "./ExerCreator";
+
 interface Props {
     visibility: string
 }
@@ -19,7 +21,6 @@ export default function SettingsBlock(props: Props) {
 
     const { workDay, setWorkDay } = useContext(DaysContext);
 
-    const { exercises, setExercises } = useContext(DaysContext);
 
     const [bgColor, setBgColor] = useState('#3E4552');
     const [bgColor1, setBgColor1] = useState('#3E4552');
@@ -38,20 +39,7 @@ export default function SettingsBlock(props: Props) {
     const [textColor6, setTextColor6] = useState('#f52d56');
 
   
-    const addExercise = (series: number, reps: number, name: string) => {
-        setExercises((prevExercises: {series: number, reps: number, name: string}[]) => {
-            return [...prevExercises, {series, reps, name}]
-        })
-    }
-
-    useEffect(() => {
-        addExercise(2, 10, 'Bench Press');
-    },[])
-
     
-
-    
-
 
     const SwitchDayOn = (day: string) => {
         switch (day) {
@@ -230,12 +218,17 @@ export default function SettingsBlock(props: Props) {
                 </View>
                 
             </View>
+            <Text style={styles.title2}>Choose your exercises</Text>
             <View style={[styles.blocks, { marginTop: 15 }]}>
-                <Text style={styles.title2}></Text>
+                <TouchableOpacity style={{shadowColor: 'black', shadowRadius: 10, elevation: 20 ,backgroundColor: '#f52d56', width: 100, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10}}>
+                <Text style={{ color: 'white', fontSize: 30, fontWeight: 'bold' }}>Create</Text>
+
+                </TouchableOpacity>
             </View>
+            <ExerCreator/>
+            
         </View>
         </ScrollView>
-        
     );
 }
 

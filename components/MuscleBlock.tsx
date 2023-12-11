@@ -4,6 +4,8 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useState, useContext, useEffect } from "react";
 import { DaysContext } from "../contexts/days";
 
+
+
 interface Props {
     visibility: string
 }
@@ -78,9 +80,7 @@ export default function MuscleBlock(props: Props) {
                         </TouchableOpacity>)}
                         )}
                     </ScrollView>
-                </LinearGradient>
-                
-            
+                </LinearGradient>            
             </View>
         </ScrollView>
     )
