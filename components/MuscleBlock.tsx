@@ -65,7 +65,7 @@ export default function MuscleBlock(props: Props) {
 
                     <ScrollView horizontal={true} style={{ position: "absolute", bottom: 10 ,width: '100%', backgroundColor: '#3E4552'}}>
                         <View style={{ backgroundColor: 'yellow', width: 10, height: '100%', borderBottomRightRadius: 15 }}></View>
-                        {Array.from(exercises).map((exercise, index) => {
+                        {Array.from(exercises).filter(exercise => exercise.day1.includes(today)).map((exercise, index) => {
                             
                             return (
                         <TouchableOpacity key={index} onPress={() => {setIconNames(prevIconNames => {

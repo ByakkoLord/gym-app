@@ -17,8 +17,8 @@ export const DaysContext = createContext<{
     setSaturday: (value: boolean) => void,
     workDay: boolean,
     setWorkDay: (value: boolean) => void,
-    exercises: {series: number, reps: number, name: string}[],
-    setExercises: React.Dispatch<React.SetStateAction<{series: number, reps: number, name: string}[]>>,
+    exercises: {series: number, reps: number, name: string, day1: number[]}[],
+    setExercises: React.Dispatch<React.SetStateAction<{series: number, reps: number, name: string, day1: number[]}[]>>,
 }>({
     Sunday: false,
     setSunday: () => {},
@@ -50,7 +50,7 @@ export const DaysProvider = ({ children }: { children: ReactNode }) => {
     const [Saturday, setSaturday] = useState<boolean>(false);
     const [workDay, setWorkDay] = useState<boolean>(false);
 
-    const [exercises, setExercises] = useState<{series: number, reps: number, name: string}[]>([]);
+    const [exercises, setExercises] = useState<{series: number, reps: number, name: string, day1: number[]}[]>([]);
 
     return (
         <DaysContext.Provider value={{exercises, setExercises ,workDay, setWorkDay, Sunday, setSunday, Monday, setMonday, Tuesday, setTuesday, Wednesday, setWednesday, Thursday, setThursday, Friday, setFriday, Saturday, setSaturday }}>
