@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, TextInput, ScrollView, TouchableOpacity } from "react-native"
 import { Ionicons } from '@expo/vector-icons';
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { DaysContext } from "../contexts/days";
 
 interface Props {
@@ -19,6 +19,8 @@ export default function SettingsBlock(props: Props) {
 
     const { workDay, setWorkDay } = useContext(DaysContext);
 
+    const { exercises, setExercises } = useContext(DaysContext);
+
     const [bgColor, setBgColor] = useState('#3E4552');
     const [bgColor1, setBgColor1] = useState('#3E4552');
     const [bgColor2, setBgColor2] = useState('#3E4552');
@@ -34,6 +36,19 @@ export default function SettingsBlock(props: Props) {
     const [textColor4, setTextColor4] = useState('#f52d56');
     const [textColor5, setTextColor5] = useState('#f52d56');
     const [textColor6, setTextColor6] = useState('#f52d56');
+
+  
+    const addExercise = (series: number, reps: number, name: string) => {
+        setExercises((prevExercises: {series: number, reps: number, name: string}[]) => {
+            return [...prevExercises, {series, reps, name}]
+        })
+    }
+
+    useEffect(() => {
+        addExercise(2, 10, 'Bench Press');
+    },[])
+
+    
 
     
 

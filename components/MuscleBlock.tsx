@@ -11,6 +11,7 @@ interface Props {
 export default function MuscleBlock(props: Props) {
 
     const { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, workDay } = useContext(DaysContext);
+    const { exercises } = useContext(DaysContext);
 
     const [textToday, setTextToday] = useState<string>('');
     type IconName = "checkmark-circle" | "checkmark-circle-outline";
@@ -19,6 +20,7 @@ export default function MuscleBlock(props: Props) {
     let day = new Date()
     const today = day.getDay();
     useEffect(() => {
+        
         if(today === 0 && Sunday === true){
             setTextToday('Sunday');
         }
@@ -44,12 +46,7 @@ export default function MuscleBlock(props: Props) {
             setTextToday('Rest Day');
         }
 },[Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday])
-    
-    const exerciceData = {
-        series: 5,
-        reps: 15,
-        name: 'Bench Press'
-    }
+   
  
     if (props.visibility === 'none') {
         return null;
@@ -61,15 +58,16 @@ export default function MuscleBlock(props: Props) {
                 <LinearGradient start={{x: 0.1, y:0.1}} colors={['#f52d56', '#ED61E6']} style={styles.main}>
                         <Text style={{ color: 'white', fontSize: 60, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 12, left: 12 }}>{textToday}</Text>
                         <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 92, left: 12 }}>Let's train:</Text>
-                        <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 162, left: 12 }}>Chest</Text>
+                        <Text style={{ color: 'white', fontSize: 40, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 142, left: 12 }}>Chest</Text>
                         <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 232, left: 12 }}>Exercices:</Text>
 
                     <ScrollView horizontal={true} style={{ position: "absolute", bottom: 10 ,width: '100%', backgroundColor: '#3E4552'}}>
                         <View style={{ backgroundColor: 'yellow', width: 10, height: '100%', borderBottomRightRadius: 15 }}></View>
-                        {Array.from({ length: 3}).map((_, index) => {
-                            const exercise = exerciceData;
+                        {Array.from(exercises).map((exercise, index) => {
+                            
                             return (
-                        <TouchableOpacity onPress={() => {setIconNames(prevIconNames => {
+                        <TouchableOpacity key={index} onPress={() => {setIconNames(prevIconNames => {
+                            
                             const newIconNames = [...prevIconNames];
                             newIconNames[index] = newIconNames[index] === 'checkmark-circle' ? "checkmark-circle-outline" : "checkmark-circle";
                             return newIconNames;
@@ -79,9 +77,6 @@ export default function MuscleBlock(props: Props) {
                             <Ionicons style={{position: "absolute", right: 10, bottom: 3}} name={iconNames[index]} size={35} color="#FFFF" />
                         </TouchableOpacity>)}
                         )}
-                        <View style={{  width: 300, height: 100, display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                            <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left'}}>Bench Press</Text>
-                        </View>
                     </ScrollView>
                 </LinearGradient>
                 

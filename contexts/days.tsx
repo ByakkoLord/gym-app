@@ -1,22 +1,43 @@
-import { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useState } from "react";
 
-export const DaysContext = createContext({
+export const DaysContext = createContext<{
+    Sunday: boolean,
+    setSunday: (value: boolean) => void,
+    Monday: boolean,
+    setMonday: (value: boolean) => void,
+    Tuesday: boolean,
+    setTuesday: (value: boolean) => void,
+    Wednesday: boolean,
+    setWednesday: (value: boolean) => void,
+    Thursday: boolean,
+    setThursday: (value: boolean) => void,
+    Friday: boolean,
+    setFriday: (value: boolean) => void,
+    Saturday: boolean,
+    setSaturday: (value: boolean) => void,
+    workDay: boolean,
+    setWorkDay: (value: boolean) => void,
+    exercises: {series: number, reps: number, name: string}[],
+    setExercises: React.Dispatch<React.SetStateAction<{series: number, reps: number, name: string}[]>>,
+}>({
     Sunday: false,
-    setSunday: (value: boolean) => {},
+    setSunday: () => {},
     Monday: false,
-    setMonday: (value: boolean) => {},
+    setMonday: () => {},
     Tuesday: false,
-    setTuesday: (value: boolean) => {},
+    setTuesday: () => {},
     Wednesday: false,
-    setWednesday: (value: boolean) => {},
+    setWednesday: () => {},
     Thursday: false,
-    setThursday: (value: boolean) => {},
+    setThursday: () => {},
     Friday: false,
-    setFriday: (value: boolean) => {},
+    setFriday: () => {},
     Saturday: false,
-    setSaturday: (value: boolean) => {},
+    setSaturday: () => {},
     workDay: false,
-    setWorkDay: (value: boolean) => {},
+    setWorkDay: () => {},
+    exercises: [],
+    setExercises: () => {},
 });
 
 export const DaysProvider = ({ children }: { children: ReactNode }) => {
@@ -29,8 +50,10 @@ export const DaysProvider = ({ children }: { children: ReactNode }) => {
     const [Saturday, setSaturday] = useState<boolean>(false);
     const [workDay, setWorkDay] = useState<boolean>(false);
 
+    const [exercises, setExercises] = useState<{series: number, reps: number, name: string}[]>([]);
+
     return (
-        <DaysContext.Provider value={{workDay, setWorkDay, Sunday, setSunday, Monday, setMonday, Tuesday, setTuesday, Wednesday, setWednesday, Thursday, setThursday, Friday, setFriday, Saturday, setSaturday }}>
+        <DaysContext.Provider value={{exercises, setExercises ,workDay, setWorkDay, Sunday, setSunday, Monday, setMonday, Tuesday, setTuesday, Wednesday, setWednesday, Thursday, setThursday, Friday, setFriday, Saturday, setSaturday }}>
             {children}
         </DaysContext.Provider>
     )
