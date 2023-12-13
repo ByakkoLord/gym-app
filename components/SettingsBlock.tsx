@@ -146,7 +146,12 @@ export default function SettingsBlock(props: Props) {
     
 
     return (
-        <ScrollView style={{width: '100%', height: '100%'}}>
+        
+        <ScrollView style={{width: '100%'}}>
+            <TouchableOpacity onPress={() => {setVisibility('none')}} style={{shadowColor: 'black', shadowRadius: 10, elevation: 20 ,backgroundColor: '#f52d56', width: 100, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10, position: "absolute", bottom: 10, left: 45}}>
+                <Text style={{ color: 'white', fontSize: 30, fontWeight: 'bold' }}>Return</Text>
+
+            </TouchableOpacity>
             <View style={styles.main}>
             <View style={{ display: 'flex', flexDirection: "row", justifyContent: 'space-between', width: '100%', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'white', paddingBottom: 20 }}>
                 <Text style={styles.title}>Settings</Text>
@@ -223,15 +228,17 @@ export default function SettingsBlock(props: Props) {
                 
             </View>
             <Text style={styles.title2}>Choose your exercises</Text>
-            <View style={[styles.blocks, { marginTop: 15 }]}>
+            <View style={[styles.blocks, { marginTop: 15, marginBottom: 130 }]}>
                 <TouchableOpacity onPress={() => {setVisibility('flex')}} style={{shadowColor: 'black', shadowRadius: 10, elevation: 20 ,backgroundColor: '#f52d56', width: 100, height: 50, display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: 10}}>
                 <Text style={{ color: 'white', fontSize: 30, fontWeight: 'bold' }}>Create</Text>
 
                 </TouchableOpacity>
             </View>
-            <ExerCreator visibility={visibility}/>
+            
+            <ExerCreator visibility={visibility}/>            
             
         </View>
+        
         </ScrollView>
     );
 }

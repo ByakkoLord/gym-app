@@ -9,6 +9,8 @@ interface Props {
 
 export default function ExerCreator(props: Props) {
 
+    const [difficult, setDifficult] = useState<number[]>();
+
     
     const [bgColor, setBgColor] = useState<string>('#3E4552');
     const [textColor, setTextColor] = useState<string>('white');
@@ -47,8 +49,10 @@ export default function ExerCreator(props: Props) {
         setExercises((prevExercises: {series: number, reps: number, name: string, day1: number[]}[]) => {
             return [...prevExercises, {series: Number(series), reps: Number(reps), name: String(name), day1: day1}]
         })
-        
     }
+
+    
+    
 
     if (props.visibility === 'none') {
         return null;
@@ -119,13 +123,16 @@ export default function ExerCreator(props: Props) {
             }
         }
     }
+
+    
     
 
     return (
-        <View style={{ display: 'flex', backgroundColor: '#3E4552', justifyContent: 'center', alignItems: "center", width: 440, shadowColor: 'black', shadowRadius: 15, elevation: 15, borderRadius: 15}}>
+        <View style={{ display: 'flex', backgroundColor: '#3E4552', justifyContent: 'center', alignItems: "center", width: 440, shadowColor: 'black', shadowRadius: 15, elevation: 15, borderRadius: 15, position: "absolute", top: 200, left: 20}}>
                 <View style={{display: "flex", flexDirection: 'row', justifyContent: 'space-between', width: '85%', marginTop: 15}}>
                     <Text style={styles.title}>Series</Text>
                     <TextInput
+                        keyboardType="numeric"
                         onChangeText={text => setSeries(parseInt(text))}
                         style={[styles.inputText]}
                     />
@@ -133,39 +140,33 @@ export default function ExerCreator(props: Props) {
                 <View style={{display: "flex", flexDirection: 'row', justifyContent: 'space-between', width: '85%'}}>
                     <Text style={styles.title}>Reps</Text>
                     <TextInput
+                        keyboardType="numeric"
                         onChangeText={text => setReps(parseInt(text))}
                         style={[styles.inputText]}
                     />
-                </View>
-                <View style={{display: "flex", flexDirection: 'row', justifyContent: 'space-between', width: '85%'}}>
-                    <Text style={[styles.title, { marginTop: 15 }]}>Difficult:</Text>
-                    <View style={{display: "flex", flexDirection: 'row', justifyContent: 'space-around', width: '50%'}}>
-                        <TouchableOpacity style={{backgroundColor: '#61F540', width: 30, height: 30, borderRadius: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20}}>
-                            
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{backgroundColor: '#2FE4F5', width: 30, height: 30, borderRadius: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20}}>
-                            
-                        </TouchableOpacity>
-                        <TouchableOpacity style={{backgroundColor: '#ED61E6', width: 30, height: 30, borderRadius: 10, display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20}}>
-                            
-                        </TouchableOpacity>
-                    </View>
                 </View>
 
                 <View style={{display: "flex", flexDirection: 'row', alignItems: 'center'}}>
                     <Text style={styles.title}>Exercise:</Text>
                     <Picker
                         selectedValue={exercise}
-                        style={{ height: 50, width:150, color: 'white', marginTop: 12}}
-                        onValueChange={(itemValue, itemIndex) => setExercise(String(itemValue))}
+                        style={{ height: 50, width:200, color: 'white', marginTop: 12}}
+                        onValueChange={(itemValue) => setExercise(itemValue)}
                     >
-                        <Picker.Item label="Chest" value="Chest" />
-                        <Picker.Item label="Back" value="Back" />
-                        <Picker.Item label="Shoulders" value="Shoulders" />
-                        <Picker.Item label="Biceps" value="Biceps" />
-                        <Picker.Item label="Triceps" value="Triceps" />
-                        <Picker.Item label="Legs" value="Legs" />
-                        <Picker.Item label="Abs" value="Abs" />
+                        <Picker.Item label="Leg Extension" value="Leg.Ex" />
+                        <Picker.Item label="Squat" value="Squat" />
+                        <Picker.Item label="Stiff" value="Stiff" />
+                        <Picker.Item label="Hamstring Curl Machine" value="H.C.M" />
+                        <Picker.Item label="Panturrilha (G)" value="Pant (G)" />
+                        <Picker.Item label="Panturrilha (P)" value="Pant (P)" />
+                        <Picker.Item label="Supino com Barra" value="Supino/Barra" />
+                        <Picker.Item label="Peck Deck" value="Peck Deck" />
+                        <Picker.Item label="Supino Sentado" value="Supino/Sent" />
+                        <Picker.Item label="Remada Curvada" value="Remada/Curv" />
+                        <Picker.Item label="Voador Inverso" value="Voador/Inv" />
+                        <Picker.Item label="" value="" />
+                        <Picker.Item label="" value="" />
+                        <Picker.Item label="" value="" />
                     </Picker>
                 </View>
 
