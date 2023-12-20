@@ -9,8 +9,6 @@ interface Props {
 
 export default function ExerCreator(props: Props) {
 
-    const [difficult, setDifficult] = useState<number[]>();
-
     
     const [bgColor, setBgColor] = useState<string>('#3E4552');
     const [textColor, setTextColor] = useState<string>('white');
@@ -26,7 +24,6 @@ export default function ExerCreator(props: Props) {
     const [textColor5, setTextColor5] = useState<string>('white');
     const [bgColor6, setBgColor6] = useState<string>('#3E4552');
     const [textColor6, setTextColor6] = useState<string>('white');
-
 
     const { exercises, setExercises } = useContext(DaysContext);
 
