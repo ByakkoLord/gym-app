@@ -6,14 +6,16 @@ import { DaysContext } from "../contexts/days";
 
 import Stats from "./Stats";
 import BodyPrg from "./BodyPrg";
-
-
+import StreakDayHeader from "./StreakDayHeader";
+import Timer from "./Timer";
 
 interface Props {
     visibility: string
 }
 
 export default function MuscleBlock(props: Props) {
+
+    const [projectArray, setProjectArray] = useState<{day: number, exers: number, lCal: number, lWei: number}[]>([]);
 
     const { Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, workDay } = useContext(DaysContext);
     const { exercises } = useContext(DaysContext);
@@ -37,10 +39,26 @@ export default function MuscleBlock(props: Props) {
         return color;
     }
 
+    const [dayC, setDayC] = useState<number>(0);
+    const [exersC, setExersC] = useState<number>(0);
+    const [lCalC, setLCalC] = useState<number>(0);
+    const [lWeiC, setLWeiC] = useState<number>(0);
+    function statsUpdate() {
+        
+        setProjectArray([{day: dayC, exers: exersC, lCal: lCalC, lWei: lWeiC}]);
+        
+        setDayC(dayC + 1);
+        setExersC(exersC + 1);
+        setLCalC(lCalC + 1);
+        setLWeiC(lWeiC + 1);
+        console.log(projectArray);
+    }
+
     let day = new Date()
     const today = day.getDay();
     useEffect(() => {
-        
+        statsUpdate();
+           
         if(today === 0 && Sunday === true){
             setTextToday('Sunday');
             setGrColor(getRandomColor());
@@ -89,7 +107,6 @@ export default function MuscleBlock(props: Props) {
             setGrColor1(getRandomColor());
         }
 },[Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday])
-   
  
     if (props.visibility === 'none') {
         return null;
@@ -98,9 +115,14 @@ export default function MuscleBlock(props: Props) {
     return (
         <ScrollView style={{display: "flex", flexDirection: 'column' ,width: '100%', height: '100%'}}>
             <View style={{ width: '100%', height: 'auto', display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <StreakDayHeader iconMode="flame" iconMode1="" iconMode2="" iconMode3="" iconMode4="" iconMode5="" iconMode6=""/>
                 <LinearGradient start={{x: 0.1, y:0.1}} colors={[grColor, grColor1]} style={styles.main}>
                         <Text style={{ color: 'white', fontSize: 60, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: 12, left: 12 }}>{textToday}</Text>
                         <Text style={{ color: 'white', fontSize: 45, fontWeight: 'bold', textAlign: 'left', position: 'absolute', top: place, left: 12 }}>{task}</Text>
+
+                        <Timer></Timer>
+
+                        
 
                     <ScrollView horizontal={true} style={{ position: "absolute", bottom: 10 ,width: '100%', backgroundColor: '#3E4552'}}>
                         <View style={{ backgroundColor: 'yellow', width: 10, height: '100%', borderBottomRightRadius: 15 }}></View>
@@ -120,7 +142,7 @@ export default function MuscleBlock(props: Props) {
                         )}
                     </ScrollView>
                 </LinearGradient>            
-                <Stats />
+                <Stats textInfo1={dayC} textInfo2={exersC} textInfo3={lCalC} textInfo4={lWeiC}/>
                 <BodyPrg />
             </View>
             
@@ -133,7 +155,7 @@ export default function MuscleBlock(props: Props) {
 
 const styles = StyleSheet.create({
     main:{
-        marginTop: 100,
+        marginTop: 50,
         alignItems: 'center',
         width: 400,
         height: 400,
